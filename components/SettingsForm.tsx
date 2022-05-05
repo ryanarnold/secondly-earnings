@@ -151,7 +151,7 @@ function SettingsForm() {
       <Button variant="contained" onClick={updateSettingsInLocalStorage}>
         Save
       </Button>
-      <Button variant="outlined" href="/">
+      <Button variant="outlined" href="/earnings">
         Go Back
       </Button>
     </Box>

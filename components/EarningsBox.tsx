@@ -31,7 +31,7 @@ function EarningsBox() {
     const amountFormatted = formatAmountToCurrency(isWorking ? amountSoFar : amountTotal);
 
     setCurrentAmount(amountFormatted);
-    setPercentageDone(Math.floor((amountSoFar / amountTotal) * 100));
+    setPercentageDone(isWorking ? Math.floor((amountSoFar / amountTotal) * 100) : 100);
 
     setTimeout(updateCurrentAmount, 1000);
   };
