@@ -19,10 +19,14 @@ function EarningsBox() {
 
   const updateCurrentAmount = () => {
     const currencySymbol = getStringFromLocalStorage(CURRENCY, '₿');
-    const hourlyRate = getNumberFromLocalStorage(HOURLY_RATE, 638);
-    const timeStart = getTimeFromLocalStorage(START_TIME, 9, 0);
-    const timeEnd = getTimeFromLocalStorage(END_TIME, 18, 0);
+    const hourlyRate = getNumberFromLocalStorage(HOURLY_RATE, 30);
     const timeNow = moment();
+
+    const defaultHourStart = timeNow.hour() - 7;
+    const defaultHourEnd = timeNow.hour() + 1;
+
+    const timeStart = getTimeFromLocalStorage(START_TIME, defaultHourStart, 0);
+    const timeEnd = getTimeFromLocalStorage(END_TIME, defaultHourEnd, 0);
 
     const amountSoFar = calculateAmountEarned(timeStart, timeNow, hourlyRate);
     const amountTotal = calculateAmountEarned(timeStart, timeEnd, hourlyRate);
