@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
 }
 
 function Layout({ children }: Props) {
-  return <div>{children}</div>;
+  return <Container>{children}</Container>;
 }
 
 export default Layout;

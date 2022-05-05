@@ -1,6 +1,7 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Paper, Stack, Typography } from '@mui/material';
 import {
   END_TIME,
   getTimeFromLocalStorage,
@@ -28,7 +29,10 @@ function EarningsBox() {
 
     const isWorking = timeNow > timeStart && timeNow < timeEnd;
 
-    const amountFormatted = formatAmountToCurrency(isWorking ? amountSoFar : amountTotal);
+    const amountFormatted = formatAmountToCurrency(
+      isWorking ? amountSoFar : amountTotal,
+      currencySymbol
+    );
 
     setCurrentAmount(amountFormatted);
     setPercentageDone(isWorking ? Math.floor((amountSoFar / amountTotal) * 100) : 100);
@@ -40,17 +44,38 @@ function EarningsBox() {
     updateCurrentAmount();
   }, []);
 
-  const clearStorage = () => {
-    localStorage.clear();
+  const gridStyles = {
+    textAlign: 'center',
+    padding: '2rem',
+  };
+
+  const progressBarStyles = {
+    height: '1rem',
+    borderRadius: 5,
+    backgroundColor: '#E0AAFF',
+    '& .MuiLinearProgress-bar': {
+      backgroundColor: '#C77DFF',
+      borderRadius: 5,
+    },
+  };
+
+  const paperStyle = {
+    borderRadius: 8,
   };
 
   return (
-    <div>
-      <p>Today you&apos;ve earned</p>
-      <h1>{currentAmount}</h1>
-      <p>You&apos;re {percentageDone}% done with your day!</p>
-      <LinearProgress variant="determinate" value={percentageDone} />
-    </div>
+    <Paper elevation={3} sx={paperStyle}>
+      <Stack sx={gridStyles} spacing={3}>
+        <Typography variant="h5">Today you&apos;ve earned</Typography>
+        <Typography variant="h2" letterSpacing={10} fontWeight="bold">
+          {currentAmount}
+        </Typography>
+        <Typography variant="subtitle2">
+          You&apos;re {percentageDone}% done with your day!
+        </Typography>
+        <LinearProgress variant="determinate" value={percentageDone} sx={progressBarStyles} />
+      </Stack>
+    </Paper>
   );
 }
 

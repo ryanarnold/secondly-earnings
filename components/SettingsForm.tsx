@@ -1,3 +1,4 @@
+import { Paper, ThemeProvider, createTheme, Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -20,7 +21,32 @@ import {
   START_TIME,
 } from '../utils/user-settings';
 
-function SettingsForm() {
+// TODO: Store this in a common file
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#C77DFF',
+      contrastText: 'white',
+    },
+  },
+});
+
+const buttonStyle = {
+  borderRadius: 3,
+  textTransform: 'capitalize',
+  fontSize: '1.2rem',
+};
+
+const paperStyles = {
+  padding: '8%',
+  borderRadius: 20,
+};
+
+interface Props {
+  landing: boolean;
+}
+
+function SettingsForm({ landing }: Props) {
   const [currency, setCurrency] = useState('$');
   const [frequency, setFrequency] = useState('hour');
   const [startTime, setStartTime] = useState(moment().toDate());
@@ -74,84 +100,87 @@ function SettingsForm() {
     const endTimeStr = `${endTime.getHours()}:${endTime.getMinutes()}`;
     localStorage.setItem(START_TIME, startTimeStr);
     localStorage.setItem(END_TIME, endTimeStr);
+
+    window.location.href = '/earnings';
   };
 
   useEffect(loadSettingFromStorage, []);
 
   return (
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-      sx={{
-        '& > :not(style)': { m: 1, width: '90%' },
-        display: 'grid',
-      }}
-    >
-      <FormControl fullWidth>
-        <InputLabel id="select-currency-label">Currency</InputLabel>
-        <Select
-          labelId="select-currency-label"
-          id="select-currency"
-          value={currency}
-          label="Currency"
-          onChange={handleCurrencyChange}
-        >
-          <MenuItem value="$">$</MenuItem>
-          <MenuItem value="₱">₱</MenuItem>
-          <MenuItem value="₿">₿</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField
-        id="outlined-number"
-        label="Salary"
-        variant="outlined"
-        type="number"
-        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        value={salary}
-        onChange={handleChangeSalary}
-      />
-      <FormControl fullWidth>
-        <InputLabel id="select-frequency-label">Frequency</InputLabel>
-        <Select
-          labelId="select-frequency-label"
-          id="select-frequency"
-          value={frequency}
-          label="Frequency"
-          onChange={handleFrequencyChange}
-        >
-          <MenuItem value="hour">Per Hour</MenuItem>
-          <MenuItem value="day">Per Day</MenuItem>
-          <MenuItem value="month">Per Month</MenuItem>
-          <MenuItem value="year">Per Year</MenuItem>
-        </Select>
-      </FormControl>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MobileTimePicker
-          label="Start Time"
-          value={startTime}
-          onChange={handleChangeStartTime}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MobileTimePicker
-          label="End Time"
-          value={endTime}
-          onChange={handleChangeEndTime}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-      <Button variant="contained" onClick={updateSettingsInLocalStorage}>
-        Save
-      </Button>
-      <Button variant="outlined" href="/earnings">
-        Go Back
-      </Button>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Paper elevation={5} style={paperStyles}>
+        <Stack spacing={4}>
+          <Typography variant="h5" color="primary" align="center">
+            {landing ? 'Start being inspired' : 'Update your settings'}
+          </Typography>
+          <FormControl fullWidth>
+            <InputLabel id="select-currency-label">Currency</InputLabel>
+            <Select
+              labelId="select-currency-label"
+              id="select-currency"
+              value={currency}
+              label="Currency"
+              onChange={handleCurrencyChange}
+            >
+              <MenuItem value="$">$</MenuItem>
+              <MenuItem value="₱">₱</MenuItem>
+              <MenuItem value="₿">₿</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            id="outlined-number"
+            label="Salary"
+            variant="outlined"
+            type="number"
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={salary}
+            onChange={handleChangeSalary}
+          />
+          <FormControl fullWidth>
+            <InputLabel id="select-frequency-label">Frequency</InputLabel>
+            <Select
+              labelId="select-frequency-label"
+              id="select-frequency"
+              value={frequency}
+              label="Frequency"
+              onChange={handleFrequencyChange}
+            >
+              <MenuItem value="hour">Per Hour</MenuItem>
+              <MenuItem value="day">Per Day</MenuItem>
+              <MenuItem value="month">Per Month</MenuItem>
+              <MenuItem value="year">Per Year</MenuItem>
+            </Select>
+          </FormControl>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileTimePicker
+              label="Start Time"
+              value={startTime}
+              onChange={handleChangeStartTime}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileTimePicker
+              label="End Time"
+              value={endTime}
+              onChange={handleChangeEndTime}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <Button variant="contained" onClick={updateSettingsInLocalStorage} sx={buttonStyle}>
+            {landing ? 'Begin' : 'Save'}
+          </Button>
+          {!landing ? (
+            <Button variant="outlined" href="/earnings" sx={buttonStyle}>
+              Go Back
+            </Button>
+          ) : null}
+        </Stack>
+      </Paper>
+    </ThemeProvider>
   );
 }
 
