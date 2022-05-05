@@ -4,7 +4,7 @@ import EarningsBox from '../components/EarningsBox';
 
 interface Props {}
 
-function EarningsPage({}: Props) {
+function EarningsPage() {
   return (
     <div>
       <EarningsBox />
