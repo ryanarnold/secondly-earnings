@@ -14,6 +14,7 @@ import {
 import { calculateAmountEarned, formatAmountToCurrency } from '../utils/number-utils';
 
 function EarningsBox() {
+  // TODO: FIX THIS!!
   const [currentAmount, setCurrentAmount] = useState('0');
   const [percentageDone, setPercentageDone] = useState(0);
   const [currencySymbol, setCurrencySymbol] = useState('₿');
@@ -105,7 +106,7 @@ function EarningsBox() {
     const amountFormatted = formatAmountToCurrency(isWorking ? amountSoFar : amountTotal);
 
     // setCurrentAmount(amountFormatted);
-    // setPercentageDone(isWorking ? Math.floor((amountSoFar / amountTotal) * 100) : 100);
+    setPercentageDone(isWorking ? Math.floor((amountSoFar / amountTotal) * 100) : 100);
 
     updateNumber(amountFormatted);
   };
