@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +13,169 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.roll-0 {
+  animation-name: roll-0;
+}
+
+/* Animations */
+@keyframes roll-0 {
+  100% {
+    margin-top: 0em;
+  }
+}
+
+.roll-1 {
+  animation-name: roll-1;
+}
+
+/* Animations */
+@keyframes roll-1 {
+  100% {
+    margin-top: -1em;
+  }
+}
+
+.roll-2 {
+  animation-name: roll-2;
+}
+
+/* Animations */
+@keyframes roll-2 {
+  100% {
+    margin-top: -2em;
+  }
+}
+
+.roll-3 {
+  animation-name: roll-3;
+}
+
+/* Animations */
+@keyframes roll-3 {
+  100% {
+    margin-top: -3em;
+  }
+}
+
+.roll-4 {
+  animation-name: roll-4;
+}
+
+/* Animations */
+@keyframes roll-4 {
+  100% {
+    margin-top: -4em;
+  }
+}
+
+.roll-5 {
+  animation-name: roll-5;
+}
+
+/* Animations */
+@keyframes roll-5 {
+  100% {
+    margin-top: -5em;
+  }
+}
+
+.roll-6 {
+  animation-name: roll-6;
+}
+
+/* Animations */
+@keyframes roll-6 {
+  100% {
+    margin-top: -6em;
+  }
+}
+
+.roll-7 {
+  animation-name: roll-7;
+}
+
+/* Animations */
+@keyframes roll-7 {
+  100% {
+    margin-top: -7em;
+  }
+}
+
+.roll-8 {
+  animation-name: roll-8;
+}
+
+/* Animations */
+@keyframes roll-8 {
+  100% {
+    margin-top: -8em;
+  }
+}
+
+.roll-9 {
+  animation-name: roll-9;
+}
+
+/* Animations */
+@keyframes roll-9 {
+  100% {
+    margin-top: -9em;
+  }
+}
+
+.roll-10 {
+  animation-name: roll-10;
+}
+
+/* Animations */
+@keyframes roll-10 {
+  100% {
+    margin-top: -10em;
+  }
+}
+
+.stay-0 {
+  margin-top: -0em;
+}
+
+.stay-1 {
+  margin-top: -1em;
+}
+
+.stay-2 {
+  margin-top: -2em;
+}
+
+.stay-3 {
+  margin-top: -3em;
+}
+
+.stay-4 {
+  margin-top: -4em;
+}
+
+.stay-5 {
+  margin-top: -5em;
+}
+
+.stay-6 {
+  margin-top: -6em;
+}
+
+.stay-7 {
+  margin-top: -7em;
+}
+
+.stay-8 {
+  margin-top: -8em;
+}
+
+.stay-9 {
+  margin-top: -9em;
+}
+
+.stay-10 {
+  margin-top: -10em;
 }
